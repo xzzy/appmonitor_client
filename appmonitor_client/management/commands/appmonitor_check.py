@@ -5,7 +5,7 @@ from datetime import timedelta
 import requests, json, os 
 import platform
 import django
-import pkg_resources
+import importlib.metadata
 import decouple
 import subprocess
 import sys
@@ -60,8 +60,10 @@ class Command(BaseCommand):
             platform_obj["system_info"]["django_version"] = django.get_version()
 
             # Build a list of installed python packages
-            installed_packages = pkg_resources.working_set
-            installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])
+            installed_packages_list = sorted([
+                "%s==%s" % (dist.metadata["Name"], dist.metadata["Version"])
+                for dist in importlib.metadata.distributions()
+            ])
             platform_obj["python_packages"] = installed_packages_list
 
             # get debian packages
