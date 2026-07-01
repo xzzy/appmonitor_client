@@ -29,8 +29,8 @@ class Command(BaseCommand):
         APP_MONITOR_AUTH_ENABLED=decouple.config("APP_MONITOR_AUTH_ENABLED", default="False")
         APP_MONITOR_AUTH_USER=decouple.config("APP_MONITOR_AUTH_USER", default="")
         APP_MONITOR_AUTH_PASS=decouple.config("APP_MONITOR_AUTH_PASS", default="")
-        IMAGE_TAG=decouple.config("IMAGE_TAG", default="")
-        IMAGE_NAME=decouple.config("IMAGE_NAME", default="") 
+        IMAGE_TAG=decouple.config("CONTAINER_IMAGE_TAG", default="")
+        IMAGE_NAME=decouple.config("CONTAINER_IMAGE_NAME", default="") 
 
         if len(APP_MONITOR_URL) > 0:
 
